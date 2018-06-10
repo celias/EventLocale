@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Segment, Item, Icon, List, Button } from 'semantic-ui-react';
 import EventListAttendee from './EventListAttendee';
-import EventDashboard from '../eventDashboard/EventDashboard';
+
 
 class EventListItem extends Component {
   render() {
       
-      const { event, onEventEdit } = this.props;
+      const { event, onEventOpen } = this.props;
     return (
       <div>
              <Segment.Group>
@@ -40,7 +40,7 @@ class EventListItem extends Component {
                 </Segment>
                 <Segment clearing>
                 <span>D{event.description}</span>
-                  <Button onClick={onEventEdit(event)}as="a" color="teal" floated="right" content="View" />
+                  <Button onClick={onEventOpen(event)}as="a" color="teal" floated="right" content="View" />
                 </Segment>
               </Segment.Group>
       </div>
