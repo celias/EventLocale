@@ -8,7 +8,7 @@ render() {
                <Menu inverted fixed="top"> 
                 <Container>
                   <Menu.Item header>
-                    <img src="assets/logotwo.png" alt="logo" />
+                    <img src="assets/logo.png" alt="logo" />
                     Event Locale
                   </Menu.Item>
                   <Menu.Item name="Events" />
