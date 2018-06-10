@@ -14,7 +14,7 @@ class EventForm extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.event)
+    this.props.createEvent(this.state.event)
   }
 
   onInputChange = (event) => {
@@ -38,7 +38,7 @@ class EventForm extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Event Date</label>
-                    <input name='date' onChange={this.onInputChange} value={event.date} placeholder="Event Date" />
+                    <input type='date' name='date' onChange={this.onInputChange} value={event.date} placeholder="Event Date" />
                   </Form.Field>
                   <Form.Field>
                     <label>City</label>
