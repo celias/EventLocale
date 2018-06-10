@@ -24,7 +24,7 @@ const eventsDashboard = [
       {
         id: 'b',
         name: 'Tom',
-        photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=20'
+        photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=22'
       }
     ]
   },
@@ -38,7 +38,7 @@ const eventsDashboard = [
     city: 'London, UK',
     venue: 'Punch & Judy, Henrietta Street, London, UK',
     hostedBy: 'Tom',
-    hostPhotoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=20',
+    hostPhotoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=21',
     attendees: [
       {
         id: 'b',
@@ -48,7 +48,7 @@ const eventsDashboard = [
       {
         id: 'a',
         name: 'Bob',
-        photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=21'
+        photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=22'
       }
     ]
   }
@@ -56,16 +56,33 @@ const eventsDashboard = [
 
 
 class EventDashboard extends Component {
+    state = {
+      events: eventsDashboard,
+      isOpen: false
+    }
+
+  handleFormOpen = () => {
+    this.setState({
+      isOpen: true
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      isOpen: false
+    })
+  }
   render() {
     return (
       <Grid>
         <Grid.Column width={10}>
-            <EventList events={eventsDashboard}/>
+            <EventList events={this.state.events}/>
         </Grid.Column>
         <Grid.Column width={6}>
             
-            <Button positive content='Create Event' />
-         <EventForm />
+            <Button onClick={this.handleFormOpen} positive content='Create Event' />
+            { this.state.isOpen && 
+         <EventForm handleCancel={this.handleCancel}/> }
         </Grid.Column>
       </Grid>
     )
