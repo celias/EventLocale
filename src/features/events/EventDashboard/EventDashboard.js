@@ -1,54 +1,53 @@
 import React, { Component } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
-import EventList from '../eventList/EventList';
-import EventForm from '../eventForm/EventForm';
+import EventList from '../EventList/EventList';
+import EventForm from '../EventForm/EventForm';
 import cuid from 'cuid'
 
 const eventsDashboard = [
   {
     id: '1',
-    title: 'Trip to Tower of London',
+    title: 'Trip to Fiesta Market',
     date: '2018-03-27',
     category: 'culture',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'London, UK',
-    venue: "Tower of London, St Katharine's & Wapping, London",
-    hostedBy: 'Bob',
+      'AvoCATos and Catnip!',
+    city: '?, TX',
+    venue: "Fiesta Market, ?",
+    hostedBy: 'Senor Bob',
     hostPhotoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=20',
     attendees: [
       {
         id: 'a',
-        name: 'Bob',
+        name: 'Senor Bob',
         photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=20'
       },
       {
         id: 'b',
-        name: 'Tom',
+        name: 'Tom Cat',
         photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=22'
       }
     ]
   },
   {
     id: '2',
-    title: 'Trip to Punch and Judy Pub',
+    title: "Liquor n' Cats",
     date: '2018-03-28',
     category: 'drinks',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'London, UK',
-    venue: 'Punch & Judy, Henrietta Street, London, UK',
-    hostedBy: 'Tom',
+    description: 'Come out and have shots and pet kitties.',
+    city: 'Haslet, TX',
+    venue: 'The nearest liquor store',
+    hostedBy: 'Tom Cat',
     hostPhotoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=21',
     attendees: [
       {
         id: 'b',
-        name: 'Tom',
+        name: 'Tom Cat',
         photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=21'
       },
       {
         id: 'a',
-        name: 'Bob',
+        name: 'Senor Bob',
         photoURL: 'http://thecatapi.com/api/images/get?format=src&results_per_page=22'
       }
     ]
