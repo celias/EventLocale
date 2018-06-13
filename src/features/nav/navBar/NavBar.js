@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import SignedInMenu from '../Menus/SignedInMenu';
 
@@ -19,6 +19,8 @@ class NavBar extends Component {
 		this.setState({
 			authenticated: false
 		});
+		// This works because of Higher order components (withRouter)
+		this.props.history.push('/');
 	};
 
 	render() {
@@ -32,11 +34,19 @@ class NavBar extends Component {
 							Event Locale
 						</Menu.Item>
 						<Menu.Item as={NavLink} to="/events" name="Events" />
-						<Menu.Item as={NavLink} to="/people" name="People" />
+						{authenticated && <Menu.Item as={NavLink} to="/people" name="People" />}
+						{authenticated && (
+							<Menu.Item>
+								<Button
+									as={Link}
+									to="/createEvent"
+									floated="right"
+									color="teal"
+									content="Create Event"
+								/>
+							</Menu.Item>
+						)}
 
-						<Menu.Item>
-							<Button as={Link} to="/createEvent" floated="right" color="teal" content="Create Event" />
-						</Menu.Item>
 						{authenticated ? (
 							<SignedInMenu signOut={this.handleSignOut} />
 						) : (
@@ -48,4 +58,4 @@ class NavBar extends Component {
 		);
 	}
 }
-export default NavBar;
+export default withRouter(NavBar);
