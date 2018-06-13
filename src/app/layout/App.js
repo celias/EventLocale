@@ -19,9 +19,10 @@ class App extends Component {
         </Switch>
 
         <Route path="/(.+)" render={() => (
-          <div>
-            <NavBar />
-            <Container className="main">
+
+        <div>
+          <NavBar />
+          <Container className="main">
           <Switch>
             <Route path='/events' component={EventDashboard} />
             <Route path='/event/:id' component={EventDetailedPage} />
@@ -30,15 +31,12 @@ class App extends Component {
             <Route path='/settings' component={SettingsDashboard} />
             <Route path='/createEvent' component={EventForm} />
           </Switch> 
-        </Container>
-            </div>
-
-)} />
-          </div>
-
-
+          </Container>
+        </div>
+        )} 
+      />
+      </div>
     );
   }
 }
-
 export default App;
