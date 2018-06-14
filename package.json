@@ -1,5 +1,5 @@
 {
-  "name": "revents",
+  "name": "event-locale",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
