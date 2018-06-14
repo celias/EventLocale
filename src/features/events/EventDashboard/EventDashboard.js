@@ -5,9 +5,19 @@ import cuid from 'cuid';
 import EventList from '../EventList/EventList';
 import EventForm from '../EventForm/EventForm';
 
+import { createEvent, deleteEvent, updateEvent } from '../eventActions';
+
+// map state 
 const mapState = state => ({
 	events: state.events
 });
+
+// action creators
+const actions = {
+  createEvent,
+  deleteEvent,
+  updateEvent
+}
 
 class EventDashboard extends Component {
 	state = {
@@ -61,10 +71,11 @@ class EventDashboard extends Component {
 
 	// filter method
 	handleDeleteEvent = eventId => () => {
-		const updatedEvents = this.state.events.filter(e => e.id !== eventId);
-		this.setState({
-			events: updatedEvents
-		});
+    this.props.deleteEvent(eventId);
+		// const updatedEvents = this.state.events.filter(e => e.id !== eventId);
+		// this.setState({
+		// 	events: updatedEvents
+		// });
 	};
 
 	render() {
@@ -94,4 +105,4 @@ class EventDashboard extends Component {
 		);
 	}
 }
-export default connect(mapState)(EventDashboard);
+export default connect(mapState, actions)(EventDashboard);
