@@ -6,7 +6,7 @@ const HomePage = ({ history }) => {
 			<div className="ui inverted vertical masthead center aligned segment">
 				<div className="ui text container">
 					<h1 className="ui inverted stackable header">
-						<img className="ui image massive" src="/assets/logo.png" alt="logo" />
+						<img className="ui image massive" src="/assets/yes.png" alt="logo" />
 						<div className="content">Event Locale</div>
 					</h1>
 					<h2>Let's do stuff!</h2>
