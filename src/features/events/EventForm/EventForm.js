@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { reduxForm, Field } from 'redux-form';
+import cuid from 'cuid';
 import { Segment, Form, Button } from 'semantic-ui-react';
+import {createEvent, updateEvent} from '../eventActions';
 
 
 const mapState = (state, ownProps) => {
@@ -24,6 +27,11 @@ const mapState = (state, ownProps) => {
   }
 }
 
+const actions = { 
+  createEvent,
+  updateEvent
+}
+
 class EventForm extends Component {
   state = {
     event: Object.assign({}, this.props.event)
@@ -33,8 +41,16 @@ class EventForm extends Component {
     evt.preventDefault();
     if(this.state.event.id){
       this.props.updateEvent(this.state.event);
+      this.props.history.goBack();
     } else {
-      this.props.createEvent(this.state.event);
+
+      const newEvent = {
+        ...this.state.event,
+        id: cuid(),
+        hostPhotoURL: '/assets/user.png' 
+      }
+      this.props.createEvent(newEvent);
+      this.props.history.push('/events');
     }
   }
 
@@ -77,7 +93,7 @@ class EventForm extends Component {
                   <Button color='teal' type="submit">
                     Submit
                   </Button>
-                  <Button onClick={handleCancel} negative type="button">Cancel</Button>
+                  <Button onClick={this.props.history.goBack} negative type="button">Cancel</Button>
                 </Form>
               </Segment>
 
@@ -85,4 +101,4 @@ class EventForm extends Component {
     )
   }
 }
-export default connect(mapState)(EventForm);
+export default connect(mapState, actions)(reduxForm({form: 'eventForm'})(EventForm));

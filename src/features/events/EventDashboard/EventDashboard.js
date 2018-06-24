@@ -1,70 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button } from 'semantic-ui-react';
-import cuid from 'cuid';
+import { Grid } from 'semantic-ui-react';
 import EventList from '../EventList/EventList';
-import EventForm from '../EventForm/EventForm';
+import { deleteEvent } from '../eventActions';
 
-import { createEvent, deleteEvent, updateEvent } from '../eventActions';
-
-// map state 
+// map state
 const mapState = state => ({
 	events: state.events
 });
 
 // action creators
 const actions = {
-  createEvent,
-  deleteEvent,
-  updateEvent
-}
+	deleteEvent
+};
 
 class EventDashboard extends Component {
-	state = {
-		isOpen: false,
-		selectedEvent: null
-	};
-
-	handleFormOpen = () => {
-		this.setState({
-			selectedEvent: null,
-			isOpen: true
-		});
-	};
-
-	handleCancel = () => {
-		this.setState({
-			isOpen: false
-		});
-	};
-
-	handleUpdateEvent = updatedEvent => {
-    this.props.updateEvent(updateEvent)
-		this.setState({
-			isOpen: false,
-			selectedEvent: null
-		});
-	};
-
-	handleOpenEvent = eventToOpen => () => {
-		this.setState({
-			selectedEvent: eventToOpen,
-			isOpen: true
-		});
-	};
-
-	handleCreateEvent = newEvent => {
-		newEvent.id = cuid();
-		newEvent.hostPhotoURL = 'http://thecatapi.com/api/images/get?format=src&results_per_page=22';
-		this.props.createEvent(newEvent);
-		this.setState({
-			isOpen: false
-		});
-	};
-
 	// filter method
 	handleDeleteEvent = eventId => () => {
-    this.props.deleteEvent(eventId);
+		this.props.deleteEvent(eventId);
 		// const updatedEvents = this.state.events.filter(e => e.id !== eventId);
 		// this.setState({
 		// 	events: updatedEvents
@@ -72,28 +25,13 @@ class EventDashboard extends Component {
 	};
 
 	render() {
-    const { selectedEvent } = this.state;
-    const { events } = this.props;
+		const { events } = this.props;
 		return (
 			<Grid>
 				<Grid.Column width={10}>
-					<EventList
-						deleteEvent={this.handleDeleteEvent}
-						onEventOpen={this.handleOpenEvent}
-						events={events}
-					/>
+					<EventList deleteEvent={this.handleDeleteEvent} events={events} />
 				</Grid.Column>
-				<Grid.Column width={6}>
-					<Button onClick={this.handleFormOpen} positive content="Create Event" />
-					{this.state.isOpen && (
-						<EventForm
-							updateEvent={this.handleUpdateEvent}
-							selectedEvent={selectedEvent}
-							createEvent={this.handleCreateEvent}
-							handleCancel={this.handleCancel}
-						/>
-					)}
-				</Grid.Column>
+				<Grid.Column width={6} />
 			</Grid>
 		);
 	}

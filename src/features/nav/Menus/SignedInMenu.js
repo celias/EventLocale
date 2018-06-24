@@ -1,10 +1,11 @@
 import React from 'react';
 import { Menu, Image, Dropdown } from 'semantic-ui-react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+
 
 const SignedInMenu = ({signOut}) => {
 	return (
-		<div>
+		
 			<Menu.Item position="right">
 				<Image avatar spaced="right" src="/assets/user.png" />
 				<Dropdown pointing="top left" text="Username">
@@ -18,7 +19,7 @@ const SignedInMenu = ({signOut}) => {
 					</Dropdown.Menu>
 				</Dropdown>
 			</Menu.Item>
-		</div>
+		
 	);
 };
 
